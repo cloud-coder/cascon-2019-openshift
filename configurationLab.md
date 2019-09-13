@@ -66,7 +66,7 @@
 
 1. Create a new node application under the project from the example github repository
    ```bash
-    oc new-app https://github.com/jwsliu/nodejs-ex
+    oc new-app git@github.ibm.com:services4ibm/cascon-2019-openshift
    ```
 1. Expose the node application
    ```bash
