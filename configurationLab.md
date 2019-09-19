@@ -132,3 +132,8 @@ The node application takes environment variables to confugure the database conne
 
    You should see the same yaml contents from oc command
    ![](docImages/secretyaml2.jpg)
+
+## References:
+
+1. The lab is inspired by the course "Application Deployment with Red Hat OpenShift Container Platform" provided by https://training-lms.redhat.com
+1. Part of Lab example code are from https://github.com/sclorg/nodejs-ex and https://github.com/redhat-gpte-devopsautomation/PrintEnv
