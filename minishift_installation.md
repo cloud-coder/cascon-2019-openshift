@@ -74,26 +74,3 @@ Bascially follow this instruction doc, https://docs.okd.io/latest/minishift/gett
 1. Download the archive for your operating system from the Minishift Releases page and extract its contents, https://github.com/minishift/minishift/releases
 
 1. Copy the excutable file "minishift" to usr/bin
-
-## Start Minishift
-
-1. Sudo to root
-   ```bash
-   sudo -s -H
-   ```
-1. Start minishift
-   ```bash
-   minishift start
-   ```
-1. Configure Path for oc
-   ```bash
-   eval $(minishift oc-env)
-   ```
-1. Login
-   ```bash
-   oc login
-   ```
-1. Open the console
-   ```bash
-   minishift console
-   ```
