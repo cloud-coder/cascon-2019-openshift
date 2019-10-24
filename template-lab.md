@@ -1,7 +1,7 @@
 # Templates
 You can find the templates guide here: [Templates](https://docs.openshift.com/online/dev_guide/templates.html)
 
-Templates are useful for scenarios when you are creating a set of objects that share some common values, which can be parameterized. Or you want to apply the same label across multiple objects. A template definition has three main sections: **Labels**, **Parameters** and **Objects**. The **Objects** section contains an array of resource definitions that you would like to create. Certain values in the resource definitions have a placholer (i.e. variable, parameter) for a value. The name of this placeholder/variable is defined in the **Parameters** section, and to insert the value of the parameter, you would use *${param-name}* notation. A template itself is a resource definition like any other OpenShift (or Kubernetes) resrouces.
+Templates are useful for scenarios when you are creating a set of objects that share some common values, which can be parameterized. Or you want to apply the same label across multiple objects. A template definition has three main sections: **Labels**, **Parameters** and **Objects**. The **Objects** section contains an array of resource definitions that you would like to create. Certain values in the resource definitions have a placeholder (i.e. variable, parameter) for a value. The name of this placeholder/variable is defined in the **Parameters** section, and to insert the value of the parameter, you would use *${param-name}* notation. A template itself is a resource definition like any other OpenShift (or Kubernetes) resources.
 
 Here is an example of a template from the OpenShift [documentation](https://docs.openshift.com/online/dev_guide/templates.html#writing-templates):
 ```yaml
@@ -37,13 +37,13 @@ labels:
   redis: master
 ```
 
-Before a template can be used to create the resources tdefined in it, you would need to process it first. This simply replaces the placholders with the actual values in the resources. These parameters can be overriden when run from the command line, or they can be randomly generated at processing time. The command to process a templat is `oc process` which you can either pass it an existing template that is already defined in OpenShift, or you can can pass a template file using `-f filename` option. You can view the output of the processing as it is printed out in the command line, or you can pipe it to a file or a `oc create` command.
+Before a template can be used to create the resources defined in it, you would need to process it first. This simply replaces the placeholders with the actual values in the resources. These parameters can be overridden when run from the command line, or they can be randomly generated at processing time. The command to process a template is `oc process` which you can either pass it an existing template that is already defined in OpenShift, or you can can pass a template file using `-f filename` option. You can view the output of the processing as it is printed out in the command line, or you can pipe it to a file or a `oc create` command.
 
 # Writing a Template
-Starting from scratch to write a template file is generally hard to do. Instead of writing the template manually from scratch, we could either look at existing templates that are closer to what we want to create or create the resrouces using other commands and methods, then export and use the generated resource defintions.
+Starting from scratch to write a template file is generally hard to do. Instead of writing the template manually from scratch, we could either look at existing templates that are closer to what we want to create or create the resources using other commands and methods, then export and use the generated resource definitions.
 
 ## Using Existing Templates
-A typical installation of OpenShift comes with a number of templates. These templates, which can be found in the catalog, are good sources for examples and learning. Let's list thse templates and review ond of them as an example.
+A typical installation of OpenShift comes with a number of templates. These templates, which can be found in the catalog, are good sources for examples and learning. Let's list these templates and review one of them as an example.
 
 These templates are generally defined in the `openshift` namespace, which makes them accessible to the rest of the projects. The command `oc get templates -n openshift` lists these templates. Examine the list and you will find one template that is called `nodejs-mongo-persistent`.
 
@@ -206,12 +206,12 @@ Another option is that you can deploy an application using a variety of techniqu
 Let's a take sample scenario like below:
 > We use S2I to deploy our application in the *Dev* project, which creates an *image stream* with a *latest* tag. Every time we tag an image as *test*, we want that image to be (re)deployed to the *Test* project.
 
-Along the way, in this example, we will also look at using *Deploy Keys* to access a private GitHub repository, and also enable access across projects to get an image available in another project from the registry. And we then generate a template that can persumably be modified/parameterized for environment related configuration.
+Along the way, in this example, we will also look at using *Deploy Keys* to access a private GitHub repository, and also enable access across projects to get an image available in another project from the registry. And we then generate a template that can presumably be modified/parameterized for environment related configuration.
 
 > **Note:** The build and deployment automation approach shown here may not necessarily be a best practice, but an example to demonstrate the capability
 
 ### Enable Access to Private Repository
-There are severla documented approaches for enabling access to private GitHub repositories. This [blog](https://blog.openshift.com/private-git-repositories-part-1-best-practices/) entry has some details. For this exercise we will use the *Deploy Keys* approach. In this approach, you would generate a public/private ssh key pair, add the public key to the *Deploy Keys* of the private repository that you would like to give access to S2I to read from. Using this approach, you can have create or share as many ssh keys as necessary and assign them to the repositories, and limit access to read only.
+There are several documented approaches for enabling access to private GitHub repositories. This [blog](https://blog.openshift.com/private-git-repositories-part-1-best-practices/) entry has some details. For this exercise we will use the *Deploy Keys* approach. In this approach, you would generate a public/private ssh key pair, add the public key to the *Deploy Keys* of the private repository that you would like to give access to S2I to read from. Using this approach, you can have create or share as many ssh keys as necessary and assign them to the repositories, and limit access to read only.
 
 First generate the ssh key pair. You can follow the GitHub documentation to run the command below. Make sure that you don't assign a password (that's what the `-N` option provides).
 
@@ -259,7 +259,7 @@ Now that the secret based on the ssh key is set up, we can deploy the applicatio
 
 > **Note** The url specified for the secret is different from the one specified for the application deployment
 
-After the command returns, we can check the resrouces that are created and in progress to completion
+After the command returns, we can check the resources that are created and in progress to completion
 
 `oc get all`
 
@@ -292,7 +292,7 @@ Examine the image stream in detail
 
 `oc describe is cascon-oc`
 
-Looking the results from the above command, we can see that there are no tags defined. One of the ways to promote a deployment is through tags. After several iterations in the *dev* project/namespace, when a particular code version needs is ready for testing, we can tag that image as test. This can be referenced from another *DeploymentConfig* in a test project, and trigger the redeployment of that particulare image, and make it available for testing. This is one approach to control when to promote to test, by simply tagging the relevant image.
+Looking the results from the above command, we can see that there are no tags defined. One of the ways to promote a deployment is through tags. After several iterations in the *dev* project/namespace, when a particular code version needs is ready for testing, we can tag that image as test. This can be referenced from another *DeploymentConfig* in a test project, and trigger the redeployment of that particular image, and make it available for testing. This is one approach to control when to promote to test, by simply tagging the relevant image.
 
 Let's tag the *latest* image as *test*
 
@@ -303,7 +303,7 @@ Re-examine the image stream and verify that the tag is created
 `oc describe is cascon-oc`
 
 ### Export Resources
-Assuming that we have completed the necessary configuration and the application is deployed and running successfuly, we can now export the resources. In this example, we will export the *DeploymentConfig* resource and use that for next deployment.
+Assuming that we have completed the necessary configuration and the application is deployed and running successfully, we can now export the resources. In this example, we will export the *DeploymentConfig* resource and use that for next deployment.
 
 Export the *DeploymentConfig* resource and save it into a file
 
@@ -451,7 +451,7 @@ Create the test project
 
 `oc new-project cascon-oc-tmpl-test`
 
-If we deploy like without any further changes, the deployment will fail. Let's see what happenes
+If we deploy like without any further changes, the deployment will fail. Let's see what happens
 
 `oc create -f cascon-oc-dc-test.yaml`
 
@@ -597,4 +597,4 @@ After creating the template file show above (e.g. *cascon-oc-tmpl.template.yaml*
 
 `oc process -f cascon-oc-tmpl.template.yaml | less`
 
-We can either direct the output of the processing to a file or to an `oc new-app` command in one go, to create the resrouces. It is also possible to create the template in the *openshift* project/namespace and allow others to use the same template to create a similar application.
+We can either direct the output of the processing to a file or to an `oc new-app` command in one go, to create the resources. It is also possible to create the template in the *openshift* project/namespace and allow others to use the same template to create a similar application.
