@@ -172,7 +172,8 @@ NAME        HOST/PORT                                        PATH      SERVICES 
 nodejs-ex   nodejs-ex-cascon-oc-config.192.168.64.2.nip.io             nodejs-ex   8080-tcp                 None
 ```
 
-The application now says that there is no database configured.
+The application now says that there is no database configured.  
+
 
 ## Openshift Objects
 1. **Deployment Config**  
