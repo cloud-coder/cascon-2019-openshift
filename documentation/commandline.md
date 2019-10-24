@@ -173,7 +173,7 @@ nodejs-ex   nodejs-ex-cascon-oc-config.192.168.64.2.nip.io             nodejs-ex
 ```
 
 The application now says that there is no database configured.  
-
+<img src="docImages/nodb-configured.png" alt="No database configured" title="No database configured" height="75" />
 
 ## Openshift Objects
 1. **Deployment Config**  
