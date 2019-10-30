@@ -2,6 +2,9 @@
 
 `oc` allows you to manage your Openshift projects and applications through a terminal. Similar to how Openshift is built on top of Kubernetes with additional features, `oc` is built on top of `kubectl` but supports management of objects unique to Openshift. In order to allow for backwards compatibility with objects from a Kubernetes environment, `kubectl` is included in `oc`.
 
+Enabling `oc` when minishift is running:  
+`eval $(minishift oc-env)`  
+
 The basic recipe for forming `oc` commands is:  
 
 `oc <action> <object_type> <object_name_or_id>`  
