@@ -45,7 +45,7 @@
 - In the overview page of the web console, you should now see the applicaiton `myapp` you just deployed. The build of the application will be collapsed upon returning to the Overview page. Click on the arrow to left of the `myapp` name to expand the pane as shown below:  
   ![](docImages/webconsole6.png)
 
-- You will see that initially a build is running for the Node.js application. This is the step where S2I is run on the application source code from the Git repository to create the image which will then be run. Click on the **View Full Log** link for the build and you can follow along as the S2I builder for Node.js downloads all the dependencies required to run the application, prepares the application, and creates the image.  
+- You will see that initially a build is running for the Node.js application. Click on the **View Full Log** link for the build and you can follow along as the S2I builder for Node.js downloads all the dependencies required to run the application, prepares the application, and creates the image.  
   ![](docImages/webconsole7.png)
 
 - Head back to the **Overview** page when the build completes to see the image being deployed and the application being started up. The build is complete when you see the following in the build logs: `Push successful`.  
@@ -54,7 +54,7 @@
 - A route is automatically created after the application is deployed, so that you applications is accessible to the outside world. Click on the route link:  
   ![](docImages/webconsole9.png)
 
-- You'll see the app up and running now:  
+- You'll now see the application up and running:  
   ![](docImages/webconsole10.png)
 
 ### 3. Scaling Your Application
@@ -67,9 +67,10 @@
 
   You can see that we now have 2 replicas. Overall, that's how simple it is to scale an application (Pods in a Service).
 
-- **Application "Self Healing"** - OpenShift will always make sure that, if one pod dies, there is going to be new pod created to fill its place.
+- **Application "Self Healing"** - OpenShift is constantly monitoring to see that the desired number of Pods is actually running,
 - Since we have two Pods running right now, let's see what happens if we "accidentally" kill one. On the same page where you viewed the list of pods after scaling to 2 replicas, open one of the pods by clicking its name in the list. In the top right corner of the page, there is an **Actions** tab. When opened, there is the **Delete** action.  
   ![](docImages/webconsole13.png)
 
 - Click **Delete** and confirm the dialog. You will be taken back to the page listing pods, however, this time, there are three pods.  
   ![](docImages/webconsole14.png)
+  The pod that we deleted is terminating (i.e., it is being cleaned up). A new pod was created because OpenShift will always make sure that, if one pod dies, there is going to be new pod created to fill its place.
