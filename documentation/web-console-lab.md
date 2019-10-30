@@ -39,7 +39,7 @@
 - Fill in the form information as follows:
   ```bash
     Application Name: myapp
-    Git Repository: https://github.com/jwsliu/nodejs-ex
+    Git Repository: https://github.com/cloud-coder/cascon-2019-openshift
   ```
 - Click on **Create** in the bottom right corner of the screen and then **Continue to the project overview**.
 - In the overview page of the web console, you should now see the applicaiton `myapp` you just deployed. The build of the application will be collapsed upon returning to the Overview page. Click on the arrow to left of the `myapp` name to expand the pane as shown below:  
