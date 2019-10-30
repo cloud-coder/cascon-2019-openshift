@@ -1,51 +1,13 @@
 # OpenShift Configuration Lab
 
-## Create a project
+## Application Configuration Structure
 
-1.  Start minishift at a Commandline console
-
-    ```bash
-     sudo -s -H
-     minishift start
-     eval $(minishift oc-env)
-    ```
-
-1.  Login into minishift
-
-    ```bash
-    oc login
-    ```
-
-    enter:
-
-    #### Username: developer
-
-    #### Password: developer
-
-1.  Create a project
-
-    ```bash
-    oc new-project cascon-oc-config
-    ```
+![Browse Catalog](docImages/configuration.jpg)
 
 ## Create a Mongo DB
 
-1. Open minishift web console
-
-   ```bash
-    minishift console
-   ```
-
-   A broswer window will open, then login with
-
-   #### Username: developer
-
-   #### Password: developer
-
-1. Click on the project cascon-oc-config from the My Projects list on the right panel
-   ![](docImages/openproj.jpg)
-1. click on Browse Catalog
-   ![Browse Catalog](docImages/browseCatalog.jpg)
+1. Click on the project we just created from the My Projects list on the right panel
+   then click on Add to Project on the top-right corner and then select Browse Catalog
 
 1. Click on Databases tab and select Mongo and then click on MongoDB
    ![](docImages/mongo.jpg)
@@ -57,7 +19,7 @@
 1. Examine the parameters under Applied Parameter Values, we will bind the database connection information to a node application later.
    ![](docImages/dbpara2.jpg)
 
-## Create a Node application
+## Create a Node application (skip this step if we have created the application)
 
 1. Go back to Commandline console, set current project as cascon-oc-config
 
@@ -78,7 +40,7 @@
 
 The node application takes environment variables to confugure the database connection, we want to set these environment variables from OpenShift secrets.
 
-1. Let's take a look at the application before we set environment variables. Go to minshift web console, expand nodejs-ex application and click on the url under Route
+1. Let's take a look at the application before we set environment variables. Go to minshift web console, expand the application and click on the url under Route
    ![](docImages/app1.jpg)
 
 1. After the application is open in a new tab, you can see the database is not configued
@@ -87,7 +49,7 @@ The node application takes environment variables to confugure the database conne
 1. Add a path "/env" to the application url, the application prints out all environment variables it can access.
    ![](docImages/app3.jpg)
 
-1. Now, let's create some new environment vaiables and bind them to Mongo DB secrets. Go back to minishift web console, click on nodejs-ex under Deployment Config
+1. Now, let's create some new environment vaiables and bind them to Mongo DB secrets. Go back to minishift web console, click on the application under Deployment Config
    ![](docImages/deploy1.jpg)
 
 1. Select on Environment tab and add a environment variable for database service name, DATABASE_SERVICE_NAME = mongodb
@@ -123,16 +85,11 @@ The node application takes environment variables to confugure the database conne
    ```
    You should see the mongodb secret contents in yaml like this
    ![](docImages/secretyaml.jpg)
-1. If you are familar with Kubernetes commands, you can see the secrets by kubectl as well
-
+1. You can also look at the project deployment configuration to see the bindings between the openshift secrets and environmental variables:
    ```bash
-    kubectl get namespace  # an openshift project has its own namespace
-    kubectl get secrets -n cascon-oc-config # list all secretes under   the project of cascon-oc-config
-    kubectl get secret mongodb -o yaml  -n cascon-oc-config # get mongodb secret contents in yaml
+      oc get dc <application_name> -o ymal
    ```
-
-   You should see the same yaml contents from oc command
-   ![](docImages/secretyaml2.jpg)
+   ![](docImages/dc_config.jpg)
 
 ## References:
 
