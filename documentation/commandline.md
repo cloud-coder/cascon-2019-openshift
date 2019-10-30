@@ -85,97 +85,7 @@ Connected to MongoDB at: mongodb://userUAY:GiDdfPOX7B1UTGnX@172.30.8.66:27017/sa
 
 > If we refresh the page, we should see a new HTTP GET request.
 
-## Breaking Stuff
-
-Let's break our app! 
-
-1. Make sure everything is working  
-```bash
- λ oc get pods
-NAME                READY     STATUS      RESTARTS   AGE
-mongodb-1-7xgzg     1/1       Running     1          13d
-nodejs-ex-1-build   0/1       Completed   0          13d
-nodejs-ex-7-kj5pc   1/1       Running     0          35s
-```
-2. Mess up a deployment config
-
-```bash
-λ oc edit dc nodejs-ex
- ```
-
-Look for this part of the deployment config:
- ```yaml
- spec:
-  containers:
-  - env:
-    - name: MONGODB_USER
-      valueFrom:
-        secretKeyRef:
-          key: database-user
-          name: mongodb
-    - name: MONGODB_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: database-password
-          name: mongodb
-    - name: MONGODB_ADMIN_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: database-admin-password
-          name: mongodb
-    - name: MONGODB_DATABASE
-      valueFrom:
-        secretKeyRef:
-          key: database-name
-          name: mongodb
-```
-
-Change the password to a regular string:
-```yaml
-    - name: MONGODB_PASSWORD
-      value: wrongpassword
-```
-
-Save the file, and Openshift will use the new deployment config to create a new pod where the nodejs application can no longer connect to the database.
-
-If you broke it correctly, the new pod should be up and running.
-
-```bash
- λ oc get pods
-NAME                READY     STATUS      RESTARTS   AGE
-mongodb-1-7xgzg     1/1       Running     1          13d
-nodejs-ex-1-build   0/1       Completed   0          13d
-nodejs-ex-7-tgjj2   1/1       Running     0          34m
-```
-
-Check the logs for the new pod
-
-```bash
- λ oc logs nodejs-ex-7-tgjj2
-git version 1.8.3.1
-Environment:
-	DEV_MODE=false
-	NODE_ENV=production
-	DEBUG_PORT=5858
-Running as user uid=1001(default) gid=0(root) groups=0(root)
-...
-Server running on http://0.0.0.0:8080
-Error connecting to Mongo. Message:
-MongoError: Authentication failed.
-```
-
-Check the application, if you're unsure of the url, check the routes:
-
-```bash
- λ oc get routes
-NAME        HOST/PORT                                        PATH      SERVICES    PORT       TERMINATION   WILDCARD
-nodejs-ex   nodejs-ex-cascon-oc-config.192.168.64.2.nip.io             nodejs-ex   8080-tcp                 None
-```
-
-The application now says that there is no database configured.  
-<img src="docImages/nodb-configured.png" alt="No database configured" title="No database configured" height="75" />
-
-# Openshift Objects
+## Openshift Objects
 1. **Deployment Config**  
 Similar to a Deployment in Kubernetes in that it describes the desired state of a component of the application, but with some extra features like automatic rollbacks and lifecycle hooks  
 `oc get dc`  
@@ -319,6 +229,95 @@ test5
 ```
 > [How to Simplify Container Image Management in Kubernetes with OpenShift Image Streams – Red Hat OpenShift Blog](https://blog.openshift.com/image-streams-faq/)  
 
+# Breaking Stuff
+
+Let's break our app! 
+
+1. Make sure everything is working  
+```bash
+ λ oc get pods
+NAME                READY     STATUS      RESTARTS   AGE
+mongodb-1-7xgzg     1/1       Running     1          13d
+nodejs-ex-1-build   0/1       Completed   0          13d
+nodejs-ex-7-kj5pc   1/1       Running     0          35s
+```
+2. Mess up a deployment config
+
+```bash
+λ oc edit dc nodejs-ex
+ ```
+
+Look for this part of the deployment config:
+ ```yaml
+ spec:
+  containers:
+  - env:
+    - name: MONGODB_USER
+      valueFrom:
+        secretKeyRef:
+          key: database-user
+          name: mongodb
+    - name: MONGODB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: database-password
+          name: mongodb
+    - name: MONGODB_ADMIN_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: database-admin-password
+          name: mongodb
+    - name: MONGODB_DATABASE
+      valueFrom:
+        secretKeyRef:
+          key: database-name
+          name: mongodb
+```
+
+Change the password to a regular string:
+```yaml
+    - name: MONGODB_PASSWORD
+      value: wrongpassword
+```
+
+Save the file, and Openshift will use the new deployment config to create a new pod where the nodejs application can no longer connect to the database.
+
+If you broke it correctly, the new pod should be up and running.
+
+```bash
+ λ oc get pods
+NAME                READY     STATUS      RESTARTS   AGE
+mongodb-1-7xgzg     1/1       Running     1          13d
+nodejs-ex-1-build   0/1       Completed   0          13d
+nodejs-ex-7-tgjj2   1/1       Running     0          34m
+```
+
+Check the logs for the new pod
+
+```bash
+ λ oc logs nodejs-ex-7-tgjj2
+git version 1.8.3.1
+Environment:
+	DEV_MODE=false
+	NODE_ENV=production
+	DEBUG_PORT=5858
+Running as user uid=1001(default) gid=0(root) groups=0(root)
+...
+Server running on http://0.0.0.0:8080
+Error connecting to Mongo. Message:
+MongoError: Authentication failed.
+```
+
+Check the application, if you're unsure of the url, check the routes:
+
+```bash
+ λ oc get routes
+NAME        HOST/PORT                                        PATH      SERVICES    PORT       TERMINATION   WILDCARD
+nodejs-ex   nodejs-ex-cascon-oc-config.192.168.64.2.nip.io             nodejs-ex   8080-tcp                 None
+```
+
+The application now says that there is no database configured.  
+<img src="docImages/nodb-configured.png" alt="No database configured" title="No database configured" height="75" />
 
 # ODO
 
