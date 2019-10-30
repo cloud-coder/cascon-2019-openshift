@@ -29,10 +29,10 @@
 - To deploy an application, click the **Browse Catalog** button
   ![](docImages/webconsole3.png)
 
-- Which will take you to the following page:
+- Which will take you to the following page:  
   ![](docImages/webconsole4.png)
 
-- Scroll down and select **Node.js**
+- Scroll down and select **Node.js**  
   ![](docImages/webconsole5.png)
 
 - Click the **Next>** button on the bottom right of the screen to continue.
