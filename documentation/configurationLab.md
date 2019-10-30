@@ -5,6 +5,7 @@
 1.  Start minishift at a Commandline console
 
     ```bash
+     sudo -s -H
      minishift start
      eval $(minishift oc-env)
     ```
