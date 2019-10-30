@@ -10,7 +10,7 @@ We will start from exploring the web console, create a new project and applicati
 
 1. Overview of OpenShift
 1. <a href="documentation/MiniShift_GetStarted.md">Get Started</a>
-1. <a href="documentation/web-console-lab.md">Explore The Web Console</a>
+1. <a href="documentation/web-console-lab.md">Explore Web Console</a>
 1. <a href="documentation/commandline.md">Explore Cli</a>
 1. <a href="documentation/configurationLab.md">OpenShift Configuration</a>
 1. <a href="https://slides.com/gflores/cascon-2019-oc-build">Explore OpenShift Build</a>
