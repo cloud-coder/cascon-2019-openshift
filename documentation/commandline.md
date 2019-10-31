@@ -108,7 +108,7 @@ Labels:		app=nodejs-ex
 Annotations:	openshift.io/generated-by=OpenShiftNewApp
 Latest Version:	7
 Selector:	app=nodejs-ex,deploymentconfig=nodejs-ex
-Replicas:	1
+<b>Replicas:	1</b>
 Triggers:	Config, Image(nodejs-ex@latest, auto=true)
 <b>Strategy:	Rolling</b>
 Template:
