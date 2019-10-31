@@ -56,12 +56,14 @@ http://nodejs-ex-cascon-oc-config.192.168.64.2.nip.io to pod port 8080-tcp (svc/
 Let's check on our pods.  
 
 ```bash
- λ oc get pods
+ λ oc get pods -w
 NAME                READY     STATUS      RESTARTS   AGE
 mongodb-1-7xgzg     1/1       Running     1          13d
 nodejs-ex-1-build   0/1       Completed   0          13d
 nodejs-ex-5-kj5pc   1/1       Running     1          13d
 ```
+
+Scale up the application in the web console to see real-time updates.  
 
 Let's check the logs for our nodejs pod.
 
