@@ -243,11 +243,6 @@ A route exposes a service by giving it a externally-reachable hostname.
 `oc get routes`  
 `oc describe route <route_id>`   
 
-Example: Using ImageStreams  
-
-`oc get is` -> list image streams  
-`oc tag nodejs-ex:latest nodejs-ex:test5` -> tag latest build as "test5"
-
 <pre>
 λ oc describe route/nodejs-ex
 Name:			nodejs-ex
@@ -266,6 +261,8 @@ Service:	nodejs-ex
 Weight:		100 (100%)
 Endpoints:	172.17.0.8:8080
 </pre>
+
+> [Routes in Openshift](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/routes.html)
 
 # Breaking Stuff
 
