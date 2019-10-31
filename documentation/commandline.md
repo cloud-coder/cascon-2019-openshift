@@ -174,7 +174,7 @@ Latest Version:	1
 <b>Strategy:	Source</b>
 <b>URL:		https://github.com/jwsliu/nodejs-ex</b>
 From Image:	ImageStreamTag openshift/nodejs:10
-<b>Output to:	ImageStreamTag nodejs-ex:latest</b>
+Output to:	ImageStreamTag <b>nodejs-ex:latest</b>
 
 Build Run Policy:	Serial
 Triggered by:		Config, ImageChange
