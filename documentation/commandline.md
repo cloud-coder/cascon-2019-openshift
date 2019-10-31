@@ -45,7 +45,7 @@ svc/mongodb - 172.30.8.66:27017
   dc/mongodb deploys openshift/mongodb:3.2
     deployment #1 deployed 13 days ago - 1 pod
 
-http://nodejs-ex-cascon-oc-config.192.168.64.2.nip.io to pod port 8080-tcp (svc/nodejs-ex)
+<b>http://nodejs-ex-cascon-oc-config.192.168.64.2.nip.io</b> to pod port 8080-tcp (svc/nodejs-ex)
   dc/nodejs-ex deploys istag/nodejs-ex:latest <-
     bc/nodejs-ex source builds <b>https://github.com/jwsliu/nodejs-ex</b> on openshift/nodejs:10
     deployment #5 deployed 13 days ago - 1 pod
