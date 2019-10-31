@@ -6,7 +6,13 @@
 
 1. Sudo root
    ```bash
-   sudo -s -H
+   sudo su -
+   ```
+1. Stop minishift if it is runninng
+   ```bash
+   minishift status
+   #if it is running, stop it first
+   minishift stop
    ```
 1. Start minishift
    ```bash
