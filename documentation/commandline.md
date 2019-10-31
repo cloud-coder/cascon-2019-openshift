@@ -116,8 +116,8 @@ Pod Template:
   Labels:	app=nodejs-ex
 		deploymentconfig=nodejs-ex
   Annotations:	openshift.io/generated-by=OpenShiftNewApp
-  Containers:
-   nodejs-ex:
+  <b>Containers:</b>
+   <b>nodejs-ex:</b>
     Image:	172.30.1.1:5000/cascon-oc-config/nodejs-ex@sha256:5b48b528252a0b9ae4be130eb5f5db830764096fae61f5ed0ffb6307b015e643
     Port:	8080/TCP
     Host Port:	0/TCP
@@ -130,7 +130,7 @@ Pod Template:
     Mounts:			<none>
   Volumes:			<none>
 
-Deployment #7 (latest):
+<b>Deployment #7 (latest):</b>
 	Name:		nodejs-ex-7
 	Created:	about an hour ago
 	Status:		Complete
