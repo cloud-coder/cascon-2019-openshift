@@ -88,7 +88,7 @@ Connected to MongoDB at: mongodb://userUAY:GiDdfPOX7B1UTGnX@172.30.8.66:27017/sa
 
 > If we refresh the page, we should see a new HTTP GET request.
 
-## Openshift Objects
+## Openshift Resources
 1. **Deployment Config**  
 Similar to a Deployment in Kubernetes in that it describes the desired state of a component of the application, but with some extra features like automatic rollbacks and lifecycle hooks  
 `oc get dc`  
