@@ -217,7 +217,7 @@ Image Lookup:		local=false
 Unique Images:		1
 Tags:			3
 
-latest
+<b>latest</b>
   no spec tag
 
   * 172.30.1.1:5000/cascon-oc-config/nodejs-ex@sha256:5b48b528252a0b9ae4be130eb5f5db830764096fae61f5ed0ffb6307b015e643
@@ -255,7 +255,7 @@ Namespace:		cascon-oc-config
 Created:		2 weeks ago
 Labels:			app=nodejs-ex
 Annotations:		openshift.io/host.generated=true
-Requested Host:		nodejs-ex-cascon-oc-config.192.168.64.2.nip.io
+Requested Host:		<b>nodejs-ex-cascon-oc-config.192.168.64.2.nip.io</b>
 			  exposed on router router 2 weeks ago
 Path:			<none>
 TLS Termination:	<none>
