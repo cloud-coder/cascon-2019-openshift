@@ -33,6 +33,9 @@ NAME               DISPLAY NAME   STATUS
 cascon-oc-config                  Active
 ```
 
+> To switch to a project, use `oc project <project_name>`   
+
+
 Let's check the project status.
 <pre>
  λ oc status
