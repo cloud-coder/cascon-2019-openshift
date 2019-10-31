@@ -1,6 +1,6 @@
 # Openshift CLI (`oc`)
 
-`oc` allows you to manage your Openshift projects and applications through a terminal. Similar to how Openshift is built on top of Kubernetes with additional features, `oc` is built on top of `kubectl` but supports management of objects unique to Openshift. In order to allow for backwards compatibility with objects from a Kubernetes environment, `kubectl` is included in `oc`.
+`oc` allows you to manage your Openshift projects and applications through a terminal. Similar to how Openshift is built on top of Kubernetes with additional features, `oc` is built on top of `kubectl` but supports management of resources unique to Openshift. In order to allow for backwards compatibility with resources from a Kubernetes environment, `kubectl` is included in `oc`.
 
 Enabling `oc` when minishift is running:  
 `eval $(minishift oc-env)`  
@@ -12,9 +12,9 @@ The basic recipe for forming `oc` commands is:
 Examples:  
 `oc status` -> overview of project resources  
 `oc get project` -> get current project  
+`oc get pods` -> list pods (to watch, add `-w`)   
 `oc describe pod <pod_id>` -> get detailed information about a pod  
 `oc get pod <podname> -o yaml` -> get a pod's YAML   
-`oc build-logs <build_name>` -> get the logs for a build
 
 Red Hat's documentation containing the different command options is [here](https://docs.openshift.com/enterprise/3.0/cli_reference/basic_cli_operations.html).  
 
@@ -34,9 +34,9 @@ cascon-oc-config                  Active
 ```
 
 Let's check the project status.
-```bash
+<pre>
  λ oc status
-In project cascon-oc-config on server https://192.168.64.2:8443
+<b>In project cascon-oc-config on server https://192.168.64.2:8443</b>
 
 svc/mongodb - 172.30.8.66:27017
   dc/mongodb deploys openshift/mongodb:3.2
@@ -44,11 +44,11 @@ svc/mongodb - 172.30.8.66:27017
 
 http://nodejs-ex-cascon-oc-config.192.168.64.2.nip.io to pod port 8080-tcp (svc/nodejs-ex)
   dc/nodejs-ex deploys istag/nodejs-ex:latest <-
-    bc/nodejs-ex source builds https://github.com/jwsliu/nodejs-ex on openshift/nodejs:10
+    bc/nodejs-ex source builds <b>https://github.com/jwsliu/nodejs-ex</b> on openshift/nodejs:10
     deployment #5 deployed 13 days ago - 1 pod
     deployment #4 deployed 13 days ago
     deployment #3 deployed 13 days ago
-```
+</pre>
 
 > Here we can see that we have a mongodb service, and that it has 1 deployment config (dc) and 1 deployment.
 > We can also see a nodejs service with its route, deployment config (dc), build config (bc), and deployment history (3 deployments)
@@ -94,7 +94,7 @@ Similar to a Deployment in Kubernetes in that it describes the desired state of 
 `oc get dc`  
 `oc get dc -o yaml`  
 `oc describe dc <dc_id>`  
-```bash
+<pre>
  λ oc describe dc nodejs-ex
 Name:		nodejs-ex
 Namespace:	cascon-oc-config
@@ -105,7 +105,7 @@ Latest Version:	7
 Selector:	app=nodejs-ex,deploymentconfig=nodejs-ex
 Replicas:	1
 Triggers:	Config, Image(nodejs-ex@latest, auto=true)
-Strategy:	Rolling
+<b>Strategy:	Rolling</b>
 Template:
 Pod Template:
   Labels:	app=nodejs-ex
@@ -145,11 +145,11 @@ Deployment #5:
 Events:
   Type		Reason				Age			From				Message
   ----		------				----			----				-------
-  Normal	DeploymentCreated		59m			deploymentconfig-controller	Created new replication controller "nodejs-ex-7" for version 7
+<b>  Normal	DeploymentCreated		59m			deploymentconfig-controller	Created new replication controller "nodejs-ex-7" for version 7</b>
   Normal	RolloutCancelled		59m			deployer-controller		Rollout for "cascon-oc-config/nodejs-ex-6" cancelled
   Normal	DeploymentAwaitingCancellation	59m (x7 over 59m)	deploymentconfig-controller	Deployment of version 7 awaiting cancellation of older running deployments
   Normal	DeploymentCancelled		59m			deploymentconfig-controller	Cancelled deployment "nodejs-ex-6" superceded by version 7
-```
+</pre>
 > [Understanding Deployments and DeploymentConfigs - Deployments | Applications | OpenShift Container Platform 4.1](https://docs.openshift.com/container-platform/4.1/applications/deployments/what-deployments-are.html)  
 
 2. **Build Config**  
@@ -157,7 +157,7 @@ A build config describes how to take input like source code or an image and crea
 `oc get bc`  
 `oc get bc -o yaml`  
 `oc describe bc <bc_id>`    
-```bash
+<pre>
  λ oc describe bc nodejs-ex
 Name:		nodejs-ex
 Namespace:	cascon-oc-config
@@ -166,10 +166,10 @@ Labels:		app=nodejs-ex
 Annotations:	openshift.io/generated-by=OpenShiftNewApp
 Latest Version:	1
 
-Strategy:	Source
-URL:		https://github.com/jwsliu/nodejs-ex
+<b>Strategy:	Source</b>
+<b>URL:		https://github.com/jwsliu/nodejs-ex</b>
 From Image:	ImageStreamTag openshift/nodejs:10
-Output to:	ImageStreamTag nodejs-ex:latest
+<b>Output to:	ImageStreamTag nodejs-ex:latest</b>
 
 Build Run Policy:	Serial
 Triggered by:		Config, ImageChange
@@ -186,7 +186,7 @@ Build		Status		Duration	Creation Time
 nodejs-ex-1 	complete 	18s 		2019-10-10 14:06:17 -0400 EDT
 
 Events:	<none>
-```
+</pre>
 > [How Builds Work - Builds | Developer Guide | OpenShift Container Platform 3.4](https://docs.openshift.com/container-platform/3.4/dev_guide/builds/index.html)  
 
 3. **Image Streams**  
