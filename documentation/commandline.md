@@ -205,7 +205,7 @@ Example: Using ImageStreams
 `oc get is` -> list image streams  
 `oc tag nodejs-ex:latest nodejs-ex:test5` -> tag latest build as "test5"
 
-```bash
+<pre>
  λ oc describe is nodejs-ex
 Name:			nodejs-ex
 Namespace:		cascon-oc-config
@@ -234,7 +234,7 @@ test5
 
   * 172.30.1.1:5000/cascon-oc-config/nodejs-ex@sha256:5b48b528252a0b9ae4be130eb5f5db830764096fae61f5ed0ffb6307b015e643
       11 seconds ago
-```
+</pre>
 > [How to Simplify Container Image Management in Kubernetes with OpenShift Image Streams – Red Hat OpenShift Blog](https://blog.openshift.com/image-streams-faq/)  
 
 4. **Routes**  
@@ -248,8 +248,8 @@ Example: Using ImageStreams
 `oc get is` -> list image streams  
 `oc tag nodejs-ex:latest nodejs-ex:test5` -> tag latest build as "test5"
 
-```bash
- λ oc describe route/nodejs-ex
+<pre>
+λ oc describe route/nodejs-ex
 Name:			nodejs-ex
 Namespace:		cascon-oc-config
 Created:		2 weeks ago
@@ -265,7 +265,7 @@ Endpoint Port:		8080-tcp
 Service:	nodejs-ex
 Weight:		100 (100%)
 Endpoints:	172.17.0.8:8080
-```
+</pre>
 
 # Breaking Stuff
 
