@@ -237,6 +237,36 @@ test5
 ```
 > [How to Simplify Container Image Management in Kubernetes with OpenShift Image Streams – Red Hat OpenShift Blog](https://blog.openshift.com/image-streams-faq/)  
 
+4. **Routes**  
+A route exposes a service by giving it a externally-reachable hostname.  
+
+`oc get routes`  
+`oc describe route <route_id>`   
+
+Example: Using ImageStreams  
+
+`oc get is` -> list image streams  
+`oc tag nodejs-ex:latest nodejs-ex:test5` -> tag latest build as "test5"
+
+```bash
+ λ oc describe route/nodejs-ex
+Name:			nodejs-ex
+Namespace:		cascon-oc-config
+Created:		2 weeks ago
+Labels:			app=nodejs-ex
+Annotations:		openshift.io/host.generated=true
+Requested Host:		nodejs-ex-cascon-oc-config.192.168.64.2.nip.io
+			  exposed on router router 2 weeks ago
+Path:			<none>
+TLS Termination:	<none>
+Insecure Policy:	<none>
+Endpoint Port:		8080-tcp
+
+Service:	nodejs-ex
+Weight:		100 (100%)
+Endpoints:	172.17.0.8:8080
+```
+
 # Breaking Stuff
 
 Let's break our app! 
