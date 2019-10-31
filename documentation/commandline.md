@@ -67,6 +67,7 @@ nodejs-ex-5-kj5pc   1/1       Running     1          13d
 ```
 
 Scale up the application in the web console to see real-time updates.  
+> `oc scale --replicas=2 dc/nodejs-ex`  
 
 Let's check the logs for our nodejs pod.
 
