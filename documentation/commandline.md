@@ -36,7 +36,7 @@ cascon-oc-config                  Active
 > To switch to a project, use `oc project <project_name>`   
 
 
-Let's check the project status.
+Let's check the project status to get some basic information about our project and any applications within it.  
 <pre>
  λ oc status
 <b>In project cascon-oc-config on server https://192.168.64.2:8443</b>
