@@ -87,7 +87,7 @@ The node application takes environment variables to confugure the database conne
    ![](docImages/secretyaml.jpg)
 1. You can also look at the project deployment configuration to see the bindings between the openshift secrets and environmental variables:
    ```bash
-      oc get dc <application_name> -o ymal
+      oc get dc <application_name> -o yaml
    ```
    ![](docImages/dc_config.jpg)
 
