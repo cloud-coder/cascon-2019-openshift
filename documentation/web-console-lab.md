@@ -57,6 +57,9 @@
 - You'll now see the application up and running:  
   ![](docImages/webconsole10.png)
 
+- What's happening there?  
+  ![](docImages/webconsoleflow.png)
+
 ### 3. Scaling Your Application
 
 - Let's scale our application up to 2 instances of the pods. You can do this by clicking the **"up"** arrow next to the _Pod_ in the OpenShift web console on the overview page.  
